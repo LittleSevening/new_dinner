@@ -1,0 +1,167 @@
+<% include include/upinall.inc.ejs%>
+<div class="module">
+  <h3>--用户信息变更</h3>
+</div><!--module-->
+<%include include/note.inc.ejs%>
+<div class="content">
+		<div class="module">
+				<div class="module-head">
+								<h3>用户信息变更</h3>
+					</div>
+							<div class="module-body">
+                  <%include include/note.inc.ejs%>
+              		<form class="form-horizontal row-fluid">
+										<div class="control-group">
+                      <a class="media-avatar pull-left" href="#">
+                                                <img src="images/<%=data.head-portrait%>">
+                      </a>
+											<label class="control-label" for="basicinput">用户姓名：</label>
+											<div class="controls">
+												<input type="text" id="basicinput" placeholder="<%=data.name%>" class="span8">
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label" for="basicinput">员工工号</label>
+											<div class="controls">
+												<input type="text" id="basicinput" placeholder="<%=data.job_number%>" class="span8" disabled="">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="basicinput">所属项目</label>
+											<div class="controls">
+												<select tabindex="1" data-placeholder="<%= data.project %>" class="span8">
+													<option value=""><%= data[i].project %></option>
+                          <%for (var i=0;i<listProject.length;i++){%>
+													<option value="Category <%=i+1%>"><%=listProject[i]%></option>
+											  	<%}%>
+												</select>
+											</div>
+										</div>
+                    <div class="control-group">
+                      <label class="control-label" for="basicinput">所属部门</label>
+                      <div class="controls">
+                        <select tabindex="1" data-placeholder="<%= data.department %>" class="span8">
+                          <option value=""><%= data[i].department %></option>
+                          <%for (var i=0;i<listProject.length;i++){%>
+                          <option value="Category <%=i+1%>"><%=listDepartment[i]%></option>
+                          <%}%>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="control-group">
+											<label class="control-label">性别</label>
+											<div class="controls">
+												<label class="radio inline">
+                          <%=if(data.sex=='male'){%>
+													<input type="radio" name="optionsRadios" id="sex_male" value="male" checked="ture">
+													男
+												</label>
+												<label class="radio inline">
+													<input type="radio" name="optionsRadios" id="sex_female" value="female">
+												  女
+												</label>
+                        <%}else{%>
+                          <input type="radio" name="optionsRadios" id="sex_male" value="male" >
+													男
+												</label>
+												<label class="radio inline">
+													<input type="radio" name="optionsRadios" id="sex_female" value="female" checked="ture">
+												  女
+												</label>
+                        <%}%>
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label">Radiobuttons</label>
+											<div class="controls">
+												<label class="radio">
+													<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+													Option one
+												</label>
+												<label class="radio">
+													<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+													Option two
+												</label>
+												<label class="radio">
+													<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+													Option three
+												</label>
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label">Inline Radiobuttons</label>
+											<div class="controls">
+												<label class="radio inline">
+													<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+													Option one
+												</label>
+												<label class="radio inline">
+													<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+													Option two
+												</label>
+												<label class="radio inline">
+													<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+													Option three
+												</label>
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label">Checkboxes</label>
+											<div class="controls">
+												<label class="checkbox">
+													<input type="checkbox" value="">
+													Option one
+												</label>
+												<label class="checkbox">
+													<input type="checkbox" value="">
+													Option two
+												</label>
+												<label class="checkbox">
+													<input type="checkbox" value="">
+													Option three
+												</label>
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label">Inline Checkboxes</label>
+											<div class="controls">
+												<label class="checkbox inline">
+													<input type="checkbox" value="">
+													Option one
+												</label>
+												<label class="checkbox inline">
+													<input type="checkbox" value="">
+													Option two
+												</label>
+												<label class="checkbox inline">
+													<input type="checkbox" value="">
+													Option three
+												</label>
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label" for="basicinput">Textarea</label>
+											<div class="controls">
+												<textarea class="span8" rows="5"></textarea>
+											</div>
+										</div>
+
+										<div class="control-group">
+											<div class="controls">
+												<button type="submit" class="btn">Submit Form</button>
+											</div>
+										</div>
+									</form>
+							</div>
+						</div>
+
+
+
+					</div>
+<% include include/downinall.inc.ejs%>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edmin</title>
+  <link type="text/css" href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link type="text/css" href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+  <link type="text/css" href="css/theme.css" rel="stylesheet">
+  <link type="text/css" href="images/icons/css/font-awesome.css" rel="stylesheet">
+  <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
+  <style type="text/css">
+   h1,h2,h3,h4,h5,h6 {
+    font-size:100%;
+    font-weight:normal;
+    }
+  </style>
+
+</head>
+  <body>
+    <% include include/top.inc.ejs %><!--顶部状态栏---->
+
+    <div class="wrapper">
+      <div class="container">
+        <div class="row">
+          <% include include/menu.inc.ejs%>
+          <div class="span9">
+            <div class="module">
+              <h3>用户统计表</h3>
+            </div><!--module-->
+            <%include include/note.inc.ejs%>
+            <div class="module-body table">
+              <div class="module-body table">
+                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
+
+                  <div class="dataTables_filter" id="DataTables_Table_0_filter"></div><table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped  display dataTable" width="100%" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" style="width: 100%;">
+                  <thead>
+                    <tr role="row">
+                      <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 79px;">#</th>
+                      <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 114px;">用户名</th>
+                      <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 183px;">项目部</th>
+                      <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 183px;">部门</th>
+                      <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 79px;">工号</th>
+                      <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 10%;">操作</th>
+                   </tr>
+                  </thead>
+
+                  <tfoot>
+                    <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1">Platform(s)</th><th rowspan="1" colspan="1">Engine version</th><th rowspan="1" colspan="1">CSS grade</th></tr>
+                  </tfoot>
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    <%　for(var i=0;i<data.length;i++){　%>
+
+                    <%if (i/2!=1){%>
+                        <tr class="	gradeA odd">
+                    <%}else{%>
+                        <tr class="	gradeA even">
+                    <%}%>
+                      <!--判断各行变色-->
+                      <td class="  sorting_1"><%=i+1%></td>
+                      <td class=" "><%=data[i].name%></td>
+                      <td class=" "><%=data[i].project%></td>
+                      <td class="center "><%=data[i].department%></td>
+                      <td class="center "><%=data[i].job_number%></td>
+                      <td class="center ">
+                        <a href="update-user?id=<%= data[i].id%>" class="small span2">
+                          <i class="icon-edit"></i>
+
+									     	</a></td>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+            </div><!--module-body table-->
+          <% include include/downinall.inc.ejs%>

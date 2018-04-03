@@ -1,0 +1,50 @@
+<div class="span3">
+    <div class="sidebar">
+        <ul class="widget widget-menu unstyled">
+            <% for(var i=0;i<json.length;i++){%>
+                <% if(json[i].children.length>0) {%>
+                    <!--
+                    <li><a class="collapsed" data-toggle="collapse" href="#togglePages">
+                          <i class="menu-icon icon-cog"></i>
+                          <i class="icon-chevron-down pull-right"></i>
+                          <i class="icon-chevron-up pull-right"></i>
+                          <%= json[i].menu_text%>
+                      </a>
+                      <ul id="togglePages" class="collapse unstyled">
+                          <% for (var j=0;j<json[i].children.length;j++){%>
+                               <li><a href="other-login.html"><i class="icon-inbox"></i><%= json[i].children[j].menu_text%> </a></li>
+                          <% }%>
+                     </ul>
+                  </li>
+                   -->
+                  <li><a class="" data-toggle="collapse" href="#togglePages">
+                         <i class="menu-icon icon-cog"></i>
+                         <i class="icon-chevron-down pull-right"></i>
+                         <i class="icon-chevron-up pull-right"></i>
+                         <%= json[i].menu_text%>
+                     </a>
+                     <ul id="togglePages" class="unstyled in collapse" style="height: auto;">
+                          <% for (var j=0;j<json[i].children.length;j++){%>
+                              <li><a href="<%= json[i].children[j].menu_url %>"><i class="icon-inbox"></i><%= json[i].children[j].menu_text%> </a></li>
+                          <% }%>
+                    </ul>
+                 </li>
+                <% } else {%>
+
+                      <li class="active"><a href="index.html"><i class="menu-icon icon-dashboard"></i><%= json[i].menu_text%>
+                      </a></li>
+                <%}%>
+
+                <% if (i!=json.length-1&&json[i].menu_class!=json[i+1].menu_class){%>
+                    </ul>
+                    <!--/.widget-nav-->
+
+                    <ul class="widget widget-menu unstyled">
+                <%}%>
+            <%}%>
+        </ul>
+        <!--/.widget-nav-->
+
+    </div>
+    <!--/.sidebar-->
+</div>
