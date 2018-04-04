@@ -1,7 +1,6 @@
 /**
 *Module dependencies
 */
-
 ///use strici
 
 const express =require('express');

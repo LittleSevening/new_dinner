@@ -10,17 +10,12 @@ const mysql=require('mysql');
 //const dataformat = require('dataformat');
 const turnJson = require('../lib/turnJson');
 const common=require('../lib/common');
-const config = require('../global').config;//这个有问题啊。。以后怎么改额
-
+const config = require('../global').config;
+const connection=require('../mysql');
 // mongoskin databse bind暂时没用 直接抄的
 //mysql
 
-var connection=mysql.createPool({
-    host:'localhost',
-    user:'root',
-    password:'123456',
-    database:'dinner'
-});
+
 
 var class_list=[];
 module.exports=function(){
@@ -88,7 +83,7 @@ module.exports=function(){
         if(err){
           res.render('user-list.ejs',{note:'数据访问出错',json:null,admin:config.company});
         }else{
-          console.log('session目录是：'+req.session['admin_menu']);
+
           res.render('user.ejs',{json:req.session['admin_menu'],admin:config.company,data:data,note:null});
         }
       });
@@ -101,17 +96,41 @@ module.exports=function(){
     });
     //用户信息更新
     router.get('/update-user',function(req,res){
-        console.log(req.query.id);
+        //检测id传值是否正确
+        if (req.query.id==undefined) {
+
+        }
+
         connection.query('SELECT * FROM user_table WHERE id="'+req.query.id+'"',function(err,data){
-          if(err){
-            res.render('update-user.ejs',{json:req.session['admin_menu'],admin:config.company,data:null,note:err,listProject:null,listDepartment:null});
+          if(data==null|err){
+            res.render('update-user.ejs',{json:req.session['admin_menu'],admin:config.company,data:null,note:'没有找到用户数据'+err,listProject:null,listDepartment:null});
           }else{
-            var listProject=common.getProject();//还没做数据验证内
-            var listDepartment=common.getDepartment();
-            console.log(data);
-            res.render('update-user.ejs',{json:req.session['admin_menu'],admin:config.company,data:data,note:null,listProject,listDepartment});
+            var listProject=common.getColumn('porject');//还没做数据验证内
+            if(listProject!=null){
+                listProject=listProject;
+            }else{
+                listProject='无法获取项目部目录';
+            }
+
+            var listDepartment=common.getColumn('department');
+            if(listDepartment!=null){
+                listDepartment=listDepartment;
+            }else{
+                listDepartment='无法获取项目部目录';
+            }
+            //res.send(data);
+            res.render('update-user.ejs',{json:req.session['admin_menu'],admin:config.company,data:data[0],note:null,listProject,listDepartment});
           }
         });
     });
+
+    router.post('/update-user',function(req,res){
+        var UserInfo={
+            
+
+        };
+        var updateStr='UPDATE user_table SET  ';
+        res.send(req.body).end;
+    })
     return router;
 };
