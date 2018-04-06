@@ -17,6 +17,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# 过滤www/scripts文件夹下的文件
+.www/scripts/
+
 # =========================
 # Operating System Files
 # =========================
