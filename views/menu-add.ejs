@@ -1,0 +1,48 @@
+<% include include/upinall.inc.ejs%>
+
+<div class="content">
+		<div class="module">
+            <div class="module-head">
+								<h3>添加菜品</h3>
+			</div>
+            <div class="module-body">
+                  <%include include/note.inc.ejs%>
+
+              		<form class="form-horizontal row-fluid" action='kitchen?act=menu_add' method='post'>
+										<div class="control-group">
+											<label class="control-label" for="basicinput">菜品名称</label>
+											<div class="controls">
+												<input type="text"  class="span8"  name="dish_title" >
+											</div>
+										</div>
+										<div class="control-group">
+												<label class="control-label">主要配料</label>
+												<div class="controls">
+													<% for(var i=0;i<ingredient_list.length;i++){%>
+													<label class="checkbox inline">
+														<input type="checkbox" name='ingredient' value="	<%=ingredient_list[i]%>">
+														<%=ingredient_list[i]%>
+													</label>
+													<%}%>
+												</div>
+										 </div>
+										
+										<div class="control-group">
+											<label class="control-label" for="basicinput">价格</label><!--需要添加如何使用js控制输入的信息-->
+											<div class="controls">
+												<input type="text"  class="span8"  name="price" >
+												<span class="help-inline">保留小数点后两位</span>
+											</div>
+										</div><div class="control-group">
+											<div class="controls">
+												<button type="submit" class="btn">提交</button>
+											</div>
+										</div>
+									</form>
+							</div>
+						</div>
+
+
+
+					</div>
+<% include include/downinall.inc.ejs%>
