@@ -22,7 +22,6 @@ module.exports=function(){
                     for(var i=0;i<porject.length;i++){
                       listPorject.push(porject[i]['porject']);
                     }
-                    console.log(porject,listPorject);
                     var listDepartment=[];
                     db.query(common.getColumn('department'),(err,department)=>{
                       if(err){
@@ -32,7 +31,6 @@ module.exports=function(){
                           for(var j=0;j<department.length;j++){
                             listDepartment.push(department[j]['department']);
                           }
-                          console.log(listDepartment);
                             res.render('update-user.ejs',{json:req.session['admin_menu'],admin:config.company,data:data[0],note:null,listPorject,listDepartment});
                       }
                     });
