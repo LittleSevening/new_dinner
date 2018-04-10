@@ -1,0 +1,103 @@
+<% include include/upinall.inc.ejs%>
+
+<div class="content">
+		<div class="module">
+            <div class="module-head">
+								<h3>添加菜品</h3>
+			</div>
+            <div class="module-body">
+                  <%include include/note.inc.ejs%>
+
+              		<form class="form-horizontal row-fluid" action='kitchen?act=menu_add' method='post'>
+						<div class="control-group">
+							<label class="control-label" for="basicinput">菜品名称</label>
+							<div class="controls">
+								<input id="dish_title" type="text"  class="span8"  name="dish_title"  >
+							</div>
+						</div>
+					    <script>
+					    document.getElementById('ingre_btn').herf="kitchen?act=menu_add_ingredient&dish_title="+document.getElementById('dish_title').value;
+					    </script><!--添加新菜品名到浮出窗口-->
+						<div class="control-group">
+								<label class="control-label">主要配料</label>
+								<div class="controls">
+									<div id="DataTables_Table_0_length" class="dataTables_length">
+										 <a id="ingre_btn" href="kitchen?act=menu_add_ingredient" class="btn" ><i class="icon-plus shaded"></i>添加配料 </a>
+									</div>
+								</div>
+						 </div>
+
+						<div class="control-group">
+							<label class="control-label" for="basicinput">价格</label><!--需要添加如何使用js控制输入的信息-->
+							<div class="controls">
+								<input type="text"  class="span8"  name="price" >
+								<span class="help-inline">保留小数点后两位</span>
+							</div>
+						</div><div class="control-group">
+							<div class="controls">
+								<button type="submit" class="btn">提交</button>
+							</div>
+						</div>
+				    </form>
+			</div>
+		</div>
+		<%if (typeof class_arr!="undefined"){%>
+		<div class="shadow"></div><!--添加窗口背景 黑色0.3透明度-->
+		<div class="module upfloat"><!--添加窗口的模块 悬浮的-->
+			<div class="module-body">
+				<form class="form-horizontal row-fluid" action='kitchen?act=menu_add' method='post'>
+				<div class="profile-head media"><!--添加配料的模块头部 可以放菜品名 推荐价格 营养统计表-->
+					<a href="#" class="media-avatar pull-left">
+						<img src="images/user.png">
+					</a>
+					<div class="media-body">
+						<h4>
+							<%=dish_title%> <small>类别：暂时没有</small>
+						</h4>
+						<p class="profile-brief">
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+							Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+							unknown printer took a galley of type.
+						</p>
+						<div class="profile-details muted">
+							<a href="#" class="btn"><i class="icon-plus shaded"></i>Send Friend Request </a>
+							<a href="#" class="btn"><i class="icon-envelope-alt shaded"></i>Send message </a>
+						</div>
+					</div>
+				</div>
+				<ul class="profile-tab nav nav-tabs"><!--可翻开的菜单页 显示内容是配料的分类 实际内容是配料详细表-->
+                    <li class=""><a href="#<%=class_arr[0]['class']%>" data-toggle="tab"><%=class_arr[0]['class']%></a></li>
+					<% for(var i=1;i<class_arr.length;i++){ %>
+					<li><a href="#<%=class_arr[i]['class']%>" data-toggle="tab"><%=class_arr[i]['class']%></a></li>
+					<%}%>
+				</ul>
+				<div class="profile-tab-content tab-content">
+					<%for(var i=0;i<class_arr.length;i++){%>
+					<div class="tab-pane fade " id="<%=class_arr[i]['class']%>"><!--菜单页对应的显示页面-->
+						<div class="control-group">
+							 <label class="control-label">Inline Checkboxes</label>
+							 <div class="controls">
+							 <%for(var j=0;j<ingredient_list.length;j++){%>
+		 						<%if(ingredient_list[j].class==class_arr[i]['class']){%>
+									<label class="checkbox inline">
+										<input type="checkbox" value="<%=ingredient_list[j].text%>" id="<%=ingredient_list[j].text%>">
+      									<%=ingredient_list[j].text%>
+   								    </label>
+								<%}%>
+							<%}%>
+							</div>
+						</div>
+					</div>
+					<%}%>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn">提交</button>
+					</div>
+				</div>
+				</form>
+			</div><!--/.module-body-->
+        </div>
+		<%}%>
+</div>
+<% include include/downinall.inc.ejs%>
