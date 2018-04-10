@@ -6,7 +6,7 @@ const db=mysql.createPool({
     host:'localhost',
     user:'root',
     password:'123456',
-    database:'newdinnerdb'
+    database:'dinner'//已经是固定信息了 每次使用需要更新mysql查询语句
 });
 
 //导出模板

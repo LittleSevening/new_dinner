@@ -21,7 +21,7 @@ exports.config = {
             pass:"******"
         }
     },
-    company:'大俊子公司'
+    company:'测试小公司'
 };
 //exports.database=mogonskin.db(process.env.MONGOLAB_URI ||"mogondb://localhost/canku");//数据库连接串
 
