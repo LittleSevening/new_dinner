@@ -54,6 +54,7 @@ module.exports=function(){
               }if(class_arr==null){
                   res.status(500).send(err).end;
               }else{
+                  console.log(req.query);
                   res.render('menu-add.ejs',{note:null,json:req.session['admin_menu'],admin:config.company,ingredient_list,class_arr,dish_title:req.query.dish_title});
                   //res.send(ingredient_list).end();
               }
