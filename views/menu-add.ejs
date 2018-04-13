@@ -60,7 +60,7 @@
 								<%=dish_title%> <small>分类：未指定</small>
 							</h4>
 							<div class="control-group">
-								<textarea class="span8" rows="5" style="width: 100%;"></textarea>
+								<textarea id="ingre_textarea" class="span8" rows="5" style="width: 100%;" >所选项目有：</textarea>
 							</div>
 							<div class="profile-details muted">
 								<a href="#" class="btn" style="float: right;">
@@ -68,6 +68,19 @@
 								</a>
 							</div>
 						</div>
+						<script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+						<script>
+						$(document).ready(function(){
+							$("input[type=checkbox]").click(function(){
+							  var checkbox_value = $(this).attr('value');
+							  var checkbox_id = $(this).attr('id');
+							  console.log(checkbox_id,checkbox_value);
+							  if ($("#" + checkbox_id).is(":checked")) {
+								   $("#ingre_textarea").append("\r\n'"+checkbox_value+"':33%");
+							  }
+							});
+						});
+						</script>
 	               </div>
 				<ul class="profile-tab nav nav-tabs"><!--可翻开的菜单页 显示内容是配料的分类 实际内容是配料详细表-->
                     <li class=""><a href="#<%=class_arr[0]['class']%>" data-toggle="tab"><%=class_arr[0]['class']%></a></li>
@@ -84,7 +97,7 @@
 							 <%for(var j=0;j<ingredient_list.length;j++){%>
 		 						<%if(ingredient_list[j].class==class_arr[i]['class']){%>
 									<label class="checkbox inline">
-										<input type="checkbox" value="<%=ingredient_list[j].text%>" id="<%=ingredient_list[j].text%>">
+										<input type="checkbox" value="<%=ingredient_list[j].text%>" id="<%=ingredient_list[j].id%>">
       									<%=ingredient_list[j].text%>
    								    </label>
 								<%}%>
@@ -94,9 +107,7 @@
 					</div>
 					<%}%>
 				</div>
-                <script>
-                	TODU
-                </script>
+
 				</form>
 			</div><!--/.module-body-->
         </div>
