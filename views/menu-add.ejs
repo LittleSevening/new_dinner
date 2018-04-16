@@ -2,47 +2,97 @@
 
 <div class="content">
 		<div class="module">
-            <div class="module-head">
-								<h3>添加菜品</h3>
+			<div class="module-head">
+					<h3>添加菜品</h3>
 			</div>
-            <div class="module-body">
-                  <%include include/note.inc.ejs%>
-
-              		<form class="form-horizontal row-fluid" action='kitchen?act=menu_add' method='post'>
-										<div class="control-group">
-											<label class="control-label" for="basicinput">菜品名称</label>
-											<div class="controls">
-												<input type="text"  class="span8"  name="dish_title" >
-											</div>
-										</div>
-										<div class="control-group">
-												<label class="control-label">主要配料</label>
-												<div class="controls">
-													<% for(var i=0;i<ingredient_list.length;i++){%>
-													<label class="checkbox inline">
-														<input type="checkbox" name='ingredient' value="	<%=ingredient_list[i]%>">
-														<%=ingredient_list[i]%>
-													</label>
-													<%}%>
-												</div>
-										 </div>
-										
-										<div class="control-group">
-											<label class="control-label" for="basicinput">价格</label><!--需要添加如何使用js控制输入的信息-->
-											<div class="controls">
-												<input type="text"  class="span8"  name="price" >
-												<span class="help-inline">保留小数点后两位</span>
-											</div>
-										</div><div class="control-group">
-											<div class="controls">
-												<button type="submit" class="btn">提交</button>
-											</div>
-										</div>
-									</form>
-							</div>
-						</div>
-
-
-
+          <div class="module-body">
+              <%include include/note.inc.ejs%>
+							<form class="form-horizontal row-fluid" action='kitchen?act=menu_add' method='post'>
+								<div class="control-group">
+									<label class="control-label" for="basicinput">菜品名称</label>
+									<div class="controls">
+										<input type="text"  class="span8"  name="dish_title" >
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="basicinput">价格</label><!--需要添加如何使用js控制输入的信息-->
+									<div class="controls">
+										<input type="text"  class="span8"  name="price" >
+										<span class="help-inline">保留小数点后两位</span>
+									</div>
+								</div><div class="control-group">
+									<div class="controls">
+										<button type="submit" class="btn">提交</button>
+									</div>
+								</div>
+							</form>
 					</div>
+					<!--这是另外一个module-body-->
+					<div class="module-body">
+						<div class="profile-head media">
+								<a href="#" class="media-avatar pull-left">
+										<img src="images/user.png">
+								</a>
+								<div class="media-body">
+										<h4>
+												John Donga <small>Offline</small>
+										</h4>
+										<p class="profile-brief">
+												Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+												Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+												unknown printer took a galley of type.
+										</p>
+										<div class="profile-details muted">
+												<a href="#" class="btn"><i class="icon-plus shaded"></i>Send Friend Request </a>
+												<a href="#" class="btn"><i class="icon-envelope-alt shaded"></i>Send message </a>
+										</div><%=class_list[0]['class']
+								</div>
+						</div><!--靠上面一点的说明部分-->
+						<% if(typeof class_list!="undefined"){%>
+						<ul class="profile-tab nav nav-tabs">
+							<li class="active"><a href="#<%=class_list[0]['class']%>" data-toggle="tab"><%=class_list[0]['class']%></a></li>
+							<% for(var i=1;i<class_list.length;i++){ %>
+								<li class=""><a href="#<%=class_list[i]['class']%>" data-toggle="tab"><%=class_list[i]['class']%></a></li>
+							<%}%>
+						</ul>
+						<%for(var i=0;i<class_list.length;i++){%>
+            <div class="profile-tab-content tab-content">
+							<div class="tab-pane fade" id="<%=class_list[i]['class']%>">
+								<div class="control-group">
+										<label class="control-label"><%=class_list[i]['class']%></label>
+										<div class="controls">
+											<%for(var j=0;ingredient_list)%>
+											<label class="checkbox">
+												<input type="checkbox" value="">
+												Option one
+											</label>
+											<label class="checkbox">
+												<input type="checkbox" value="">
+												Option two
+											</label>
+											<label class="checkbox">
+												<input type="checkbox" value="">
+												Option three
+											</label>
+										</div>
+									</div>
+								</div>
+								<%}%>
+								<div class="tab-pane fade active in" id="friends">
+										<div class="module-option clearfix">
+												<form>
+												<div class="input-append pull-left">
+														<input type="text" class="span3" placeholder="Filter by name...">
+														<button type="submit" class="btn">
+																<i class="icon-search"></i>
+														</button>
+												</div>
+												</form>
+										</div>
+								</div>
+								<%}%>
+							</div>
+					</div>
+		 </div>
+</div>
 <% include include/downinall.inc.ejs%>
