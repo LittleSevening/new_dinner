@@ -20,7 +20,7 @@ $RECYCLE.BIN/
 # 过滤www/scripts文件夹下的文件
 .www/scripts/
 # 过滤node_modules文件夹下的文件
-.node_modules/
+/node_modules/
 
 # =========================
 # Operating System Files
