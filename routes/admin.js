@@ -77,6 +77,7 @@ module.exports=function(){
     //用户管理界面 框架已搭好
     router.use('/user',require('./admin/user.js')());
     router.use('/kitchen',require('./admin/kitchen.js')());
+    router.use('/test',require('./admin/test.js')());
     //组织机构
     router.get('/framwork',function(req,res){
         connection.query('SELECT * FROM user_table',function(err,data){
